@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rebel Repeater Demo</title>
+    <script src="compiled.js"></script>
+</head>
+<body>
+    <rbl-repeater element="ul" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
+        <li>${firstName} ${lastName}</li>
+    </rbl-repeater>
+</body>
+</html>
