@@ -30,23 +30,25 @@ For ES2015 projects `rebel-repeater` makes use of the [jspm](http://jspm.io/) pa
 
 Then you can include it into your ES2015 project as you would any other module:
 
-`import * as RebelRepeater from 'revillweb/rebel-repeater';`
+````javascript
+import * as RebelRepeater from 'revillweb/rebel-repeater';
+````
 
 **Note**: *`rebel-repeater.js` doesn't actually export anything but an import is required to have the custom element registered on the document.*
 
 API
 ===
 
-At this point in time the component is very primitive and more a proof of concept than a useful item. 
+At this point in time the component is very primitive and more a proof of concept than anything useful. 
 
 Attributes
 ----------
 
 | Attribute Name | Required | Type | Example | Comments |
 | -------------- | -------- | ---- | ------- | -------- |
-| element        |   *No*   | String | ul, div, ol, etc. | Used to tell the component what element to wrap the contents in |
-| shadow         |   *No*   | boolean | true, false | Used to tell the component if it should wrap the repeated content within the Shadow DOM |
-| content        |   *Yes*  | Array | [{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}] | Used to tell the component if it should wrap the repeated content within the Shadow DOM |
+| element        |   No   | String | ul, div, ol, etc. | Used to tell the component what element to wrap the contents in |
+| shadow         |   No   | boolean | true, false | Used to tell the component if it should wrap the repeated content within the Shadow DOM |
+| content        |   **Yes**  | Array | [{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}] | Used to tell the component if it should wrap the repeated content within the Shadow DOM |
 
 Template
 --------
@@ -64,7 +66,18 @@ You could write the following template to pull out the show title:
 
 `<p>${title}</p>`
 
+Example
+=======
+
+You can find a working example by running index.html in a modern web browser or take a look at the code below:
+
+````html
+<rbl-repeater element="ul" shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
+        <li>${firstName} ${lastName}</li>
+</rbl-repeater>
+````
+
 Contributing
-____________
+============
 
 To contribute to this project all you will need is jspm installed and a love of web components. Please submit any suggestions or changes via a pull request.
