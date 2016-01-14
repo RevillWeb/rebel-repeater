@@ -42,9 +42,9 @@ var RblRepeater = (function (_HTMLElement) {
         key: 'render',
         value: function render() {
             var content = RblRepeater.fromJson(this.getAttribute('content'));
-            var element = this.getAttribute('element').toLowerCase();
+            var element = this.getAttribute('element');
             var template = this.innerHTML;
-            var html = "<" + element + ">";
+            var html = element !== null ? "<" + element.toLowerCase() + ">" : "";
             if (Array.isArray(content)) {
                 content.forEach(function (item) {
                     html += RblRepeater.interpolate(template, item);
@@ -52,7 +52,7 @@ var RblRepeater = (function (_HTMLElement) {
             } else {
                 throw new Error("Content should be an Array of objects.");
             }
-            html += "</" + element + ">";
+            html += element !== null ? "</" + element.toLowerCase() + ">" : "";
             if (this.getAttribute('shadow') != "false") {
                 this.shadowRoot.innerHTML = html;
                 this.innerHTML = "";
