@@ -6,8 +6,8 @@
     <script src="compiled.js"></script>
 </head>
 <body>
-    <ul is="rbl-repeater" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
+    <rbl-repeater element="ul" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
         <li>${firstName} ${lastName}</li>
-    </ul>
+    </rbl-repeater>
 </body>
 </html>

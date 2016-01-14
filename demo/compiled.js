@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -17,8 +17,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * Twitter: @RevillWeb
  */
 
-var RblRepeater = (function (_HTMLUListElement) {
-    _inherits(RblRepeater, _HTMLUListElement);
+var RblRepeater = (function (_HTMLElement) {
+    _inherits(RblRepeater, _HTMLElement);
 
     function RblRepeater() {
         _classCallCheck(this, RblRepeater);
@@ -27,21 +27,22 @@ var RblRepeater = (function (_HTMLUListElement) {
     }
 
     _createClass(RblRepeater, [{
-        key: "createdCallback",
+        key: 'createdCallback',
         value: function createdCallback() {
             this.createShadowRoot();
         }
     }, {
-        key: "attachedCallback",
+        key: 'attachedCallback',
         value: function attachedCallback() {
             this.render();
         }
     }, {
-        key: "render",
+        key: 'render',
         value: function render() {
             var content = RblRepeater.fromJson(this.getAttribute('content'));
+            var element = this.getAttribute('element').toLowerCase();
             var template = this.innerHTML;
-            var html = "";
+            var html = "<" + element + ">";
             if (Array.isArray(content)) {
                 content.forEach(function (item) {
                     html += RblRepeater.interpolate(template, item);
@@ -49,12 +50,13 @@ var RblRepeater = (function (_HTMLUListElement) {
             } else {
                 throw new Error("Content should be an Array of objects.");
             }
+            html += "</" + element + ">";
             this.shadowRoot.innerHTML = html;
             this.innerHTML = "";
         }
     }, {
-        key: "attributeChangedCallback",
-        value: function attributeChangedCallback(name) {
+        key: 'attributeChangedCallback',
+        value: function attributeChangedCallback(name, value) {
             switch (name) {
                 case "content":
                     this.render();
@@ -62,9 +64,9 @@ var RblRepeater = (function (_HTMLUListElement) {
             }
         }
     }], [{
-        key: "interpolate",
+        key: 'interpolate',
         value: function interpolate(template, obj) {
-            if ((typeof obj === "undefined" ? "undefined" : _typeof(obj)) == "object") {
+            if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == "object") {
                 for (var key in obj) {
                     var find = "${" + key + "}";
                     if (template.indexOf(find) > -1) {
@@ -76,7 +78,7 @@ var RblRepeater = (function (_HTMLUListElement) {
             return template;
         }
     }, {
-        key: "fromJson",
+        key: 'fromJson',
         value: function fromJson(str) {
             var obj = null;
             if (typeof str == "string") {
@@ -91,9 +93,6 @@ var RblRepeater = (function (_HTMLUListElement) {
     }]);
 
     return RblRepeater;
-})(HTMLUListElement);
+})(HTMLElement);
 
-document.registerElement("rbl-repeater", {
-    prototype: RblRepeater.prototype,
-    extends: 'ul'
-});
+document.registerElement("rbl-repeater", RblRepeater);
