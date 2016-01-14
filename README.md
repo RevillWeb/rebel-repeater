@@ -69,11 +69,11 @@ You could write the following template to pull out the show title:
 Example
 =======
 
-You can find a working example by running index.html in a modern web browser or take a look at the code below:
+You can find a working example by running `index.html` in a modern web browser or take a look at the code below:
 
 ````html
 <rbl-repeater element="ul" shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
-        <li>${firstName} ${lastName}</li>
+    <li>${firstName} ${lastName}</li>
 </rbl-repeater>
 ````
 
