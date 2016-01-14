@@ -29,7 +29,9 @@ var RblRepeater = (function (_HTMLElement) {
     _createClass(RblRepeater, [{
         key: 'createdCallback',
         value: function createdCallback() {
-            this.createShadowRoot();
+            if (this.getAttribute('shadow') != "false") {
+                this.createShadowRoot();
+            }
         }
     }, {
         key: 'attachedCallback',
@@ -51,12 +53,16 @@ var RblRepeater = (function (_HTMLElement) {
                 throw new Error("Content should be an Array of objects.");
             }
             html += "</" + element + ">";
-            this.shadowRoot.innerHTML = html;
-            this.innerHTML = "";
+            if (this.getAttribute('shadow') != "false") {
+                this.shadowRoot.innerHTML = html;
+                this.innerHTML = "";
+            } else {
+                this.innerHTML = html;
+            }
         }
     }, {
         key: 'attributeChangedCallback',
-        value: function attributeChangedCallback(name, value) {
+        value: function attributeChangedCallback(name) {
             switch (name) {
                 case "content":
                     this.render();
