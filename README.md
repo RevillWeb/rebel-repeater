@@ -8,7 +8,6 @@ Usage
 
 There are two ways you can make use of this web component. You can use it as part of a bigger ES2015 project as ES2015 source, or you can include a compiled ES5 version.
 
-
 ES5
 ---
 
@@ -16,9 +15,11 @@ You can simple included the compiled version into your project and make use of t
 
 ```javascript
     <script src="compiled/rebel-repeater.js"></script>
-    <rbl-repeater element="ul" shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}]'>
-            <li>${firstName} ${lastName}</li>
-    </rbl-repeater>
+    <ul>
+        <rbl-repeater shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}]'>
+                <li>${firstName} ${lastName}</li>
+        </rbl-repeater>
+    </ul>
 ```
 
 ES2015
@@ -71,9 +72,11 @@ Example
 You can find a working example by running `index.html` in a modern web browser or take a look at the code below:
 
 ````html
-<rbl-repeater element="ul" shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
-    <li>${firstName} ${lastName}</li>
-</rbl-repeater>
+<ul>
+    <rbl-repeater shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
+        <li>${firstName} ${lastName}</li>
+    </rbl-repeater>
+</ul>
 ````
 
 Contributing
