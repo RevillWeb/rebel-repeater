@@ -17,8 +17,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * Twitter: @RevillWeb
  */
 
-var RblRepeater = (function (_HTMLElement) {
-    _inherits(RblRepeater, _HTMLElement);
+var RblRepeater = (function (_HTMLTemplateElement) {
+    _inherits(RblRepeater, _HTMLTemplateElement);
 
     function RblRepeater() {
         _classCallCheck(this, RblRepeater);
@@ -42,9 +42,8 @@ var RblRepeater = (function (_HTMLElement) {
         key: 'render',
         value: function render() {
             var content = RblRepeater.fromJson(this.getAttribute('content'));
-            var element = this.getAttribute('element');
             var template = this.innerHTML;
-            var html = element !== null ? "<" + element.toLowerCase() + ">" : "";
+            var html = "";
             if (Array.isArray(content)) {
                 content.forEach(function (item) {
                     html += RblRepeater.interpolate(template, item);
@@ -52,7 +51,6 @@ var RblRepeater = (function (_HTMLElement) {
             } else {
                 throw new Error("Content should be an Array of objects.");
             }
-            html += element !== null ? "</" + element.toLowerCase() + ">" : "";
             if (this.getAttribute('shadow') != "false") {
                 this.shadowRoot.innerHTML = html;
                 this.innerHTML = "";
@@ -99,6 +97,6 @@ var RblRepeater = (function (_HTMLElement) {
     }]);
 
     return RblRepeater;
-})(HTMLElement);
+})(HTMLTemplateElement);
 
 document.registerElement("rbl-repeater", RblRepeater);
