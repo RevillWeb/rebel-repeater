@@ -46,7 +46,6 @@ Attributes
 
 | Attribute Name | Required | Type | Example | Comments |
 | -------------- | -------- | ---- | ------- | -------- |
-| element        |   No   | String | ul, div, ol, etc. | Used to tell the component what element to wrap the contents in |
 | shadow         |   No   | boolean | true, false | Used to tell the component if it should wrap the repeated content within the Shadow DOM |
 | content        |   **Yes**  | Array | [{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}] | Used to tell the component if it should wrap the repeated content within the Shadow DOM |
 
