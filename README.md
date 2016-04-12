@@ -16,9 +16,9 @@ You can simple included the compiled version into your project and make use of t
 ```javascript
     <script src="compiled/rebel-repeater.js"></script>
     <ul>
-        <rbl-repeater shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}]'>
+        <rebel-repeater shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}]'>
                 <li>${firstName} ${lastName}</li>
-        </rbl-repeater>
+        </rebel-repeater>
     </ul>
 ```
 
@@ -53,7 +53,7 @@ Attributes
 Template
 --------
 
-You create the template which is to be repeated within the `rbl-repeater` element itself and make use of the ES2015 template string variables `${}` to pull out object properties. For example if you had populated the content attribute with an array of objects which look like this:
+You create the template which is to be repeated within the `rebel-repeater` element itself and make use of the ES2015 template string variables `${}` to pull out object properties. For example if you had populated the content attribute with an array of objects which look like this:
 
 ```
 {
@@ -73,9 +73,9 @@ You can find a working example by running `index.html` in a modern web browser o
 
 ````html
 <ul>
-    <rbl-repeater shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
+    <rebel-repeater shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
         <li>${firstName} ${lastName}</li>
-    </rbl-repeater>
+    </rebel-repeater>
 </ul>
 ````
 

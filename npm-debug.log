@@ -1,0 +1,25 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/leon/Applications/Node/5.0.0/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@1.4.28
+3 info using node@v5.0.0
+4 verbose publish [ '.' ]
+5 error Error: No version provided
+5 error     at needVersion (/usr/lib/node_modules/npm/lib/publish.js:116:36)
+5 error     at /usr/lib/node_modules/npm/lib/publish.js:33:10
+5 error     at /usr/lib/node_modules/npm/node_modules/read-package-json/read-json.js:51:40
+5 error     at final (/usr/lib/node_modules/npm/node_modules/read-package-json/read-json.js:349:17)
+5 error     at then (/usr/lib/node_modules/npm/node_modules/read-package-json/read-json.js:126:33)
+5 error     at /usr/lib/node_modules/npm/node_modules/read-package-json/read-json.js:331:40
+5 error     at tryToString (evalmachine.<anonymous>:414:3)
+5 error     at FSReqWrap.readFileAfterClose [as oncomplete] (evalmachine.<anonymous>:401:12)
+6 error If you need help, you may report this *entire* log,
+6 error including the npm and node versions, at:
+6 error     <http://github.com/npm/npm/issues>
+7 error System Linux 4.2.0-34-generic
+8 error command "/home/leon/Applications/Node/5.0.0/bin/node" "/usr/bin/npm" "publish"
+9 error cwd /home/leon/Code/rebel-repeater
+10 error node -v v5.0.0
+11 error npm -v 1.4.28
+12 verbose exit [ 1, true ]
