@@ -21,13 +21,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * Twitter: @RevillWeb
  */
 
-<<<<<<< HEAD
-var RebelRepeater = exports.RebelRepeater = (function (_HTMLElement) {
-    _inherits(RebelRepeater, _HTMLElement);
-=======
-var RblRepeater = (function (_HTMLTemplateElement) {
-    _inherits(RblRepeater, _HTMLTemplateElement);
->>>>>>> ca4160601cde73491f54af4ec74658aa78a5a11f
+var RebelRepeater = exports.RebelRepeater = (function (_HTMLTemplateElement) {
+    _inherits(RebelRepeater, _HTMLTemplateElement);
 
     function RebelRepeater() {
         _classCallCheck(this, RebelRepeater);
@@ -52,32 +47,19 @@ var RblRepeater = (function (_HTMLTemplateElement) {
     }, {
         key: 'render',
         value: function render() {
-<<<<<<< HEAD
             var _this2 = this;
 
             var element = this.getAttribute('element');
             var html = element !== null ? "<" + element.toLowerCase() + ">" : "";
             if (Array.isArray(this.content)) {
                 this.content.forEach(function (item) {
-                    html += RblRepeater.interpolate(_this2.template, item);
-=======
-            var content = RblRepeater.fromJson(this.getAttribute('content'));
-            var template = this.innerHTML;
-            var html = "";
-            if (Array.isArray(content)) {
-                content.forEach(function (item) {
-                    html += RblRepeater.interpolate(template, item);
->>>>>>> ca4160601cde73491f54af4ec74658aa78a5a11f
+                    html += RebelRepeater.interpolate(_this2.template, item);
                 });
             } else {
                 throw new Error("Content should be an Array of objects.");
             }
-<<<<<<< HEAD
             html += element !== null ? "</" + element.toLowerCase() + ">" : "";
             if (this.getAttribute('shadow') == "true") {
-=======
-            if (this.getAttribute('shadow') != "false") {
->>>>>>> ca4160601cde73491f54af4ec74658aa78a5a11f
                 this.shadowRoot.innerHTML = html;
                 this.innerHTML = "";
             } else {
@@ -101,7 +83,7 @@ var RblRepeater = (function (_HTMLTemplateElement) {
         value: function attributeChangedCallback(name) {
             switch (name) {
                 case "content":
-                    this.content = RblRepeater.fromJson(this.getAttribute('content'));
+                    this.content = RebelRepeater.fromJson(this.getAttribute('content'));
                     this.render();
                     break;
             }
@@ -135,12 +117,7 @@ var RblRepeater = (function (_HTMLTemplateElement) {
         }
     }]);
 
-<<<<<<< HEAD
     return RebelRepeater;
-})(HTMLElement);
-=======
-    return RblRepeater;
 })(HTMLTemplateElement);
->>>>>>> ca4160601cde73491f54af4ec74658aa78a5a11f
 
 document.registerElement("rebel-repeater", RebelRepeater);
