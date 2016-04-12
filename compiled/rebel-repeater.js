@@ -21,8 +21,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * Twitter: @RevillWeb
  */
 
-var RebelRepeater = exports.RebelRepeater = (function (_HTMLTemplateElement) {
-    _inherits(RebelRepeater, _HTMLTemplateElement);
+var RebelRepeater = exports.RebelRepeater = (function (_HTMLElement) {
+    _inherits(RebelRepeater, _HTMLElement);
 
     function RebelRepeater() {
         _classCallCheck(this, RebelRepeater);
@@ -118,6 +118,6 @@ var RebelRepeater = exports.RebelRepeater = (function (_HTMLTemplateElement) {
     }]);
 
     return RebelRepeater;
-})(HTMLTemplateElement);
+})(HTMLElement);
 
 document.registerElement("rebel-repeater", RebelRepeater);
