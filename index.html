@@ -6,8 +6,10 @@
     <script src="compiled/rebel-repeater.js"></script>
 </head>
 <body>
-    <rbl-repeater element="ul" shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
-        <li>${firstName} ${lastName}</li>
-    </rbl-repeater>
+    <ul>
+        <rbl-repeater shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
+            <li>${firstName} ${lastName}</li>
+        </rbl-repeater>
+    </ul>
 </body>
 </html>
