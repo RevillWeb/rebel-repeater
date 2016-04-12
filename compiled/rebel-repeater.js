@@ -2,6 +2,10 @@
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -17,19 +21,21 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * Twitter: @RevillWeb
  */
 
-var RblRepeater = (function (_HTMLElement) {
-    _inherits(RblRepeater, _HTMLElement);
+var RebelRepeater = exports.RebelRepeater = (function (_HTMLElement) {
+    _inherits(RebelRepeater, _HTMLElement);
 
-    function RblRepeater() {
-        _classCallCheck(this, RblRepeater);
+    function RebelRepeater() {
+        _classCallCheck(this, RebelRepeater);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(RblRepeater).apply(this, arguments));
+        return _possibleConstructorReturn(this, Object.getPrototypeOf(RebelRepeater).apply(this, arguments));
     }
 
-    _createClass(RblRepeater, [{
+    _createClass(RebelRepeater, [{
         key: 'createdCallback',
         value: function createdCallback() {
-            if (this.getAttribute('shadow') != "false") {
+            this.content = [];
+            this.template = this.innerHTML;
+            if (this.getAttribute('shadow') == "true") {
                 this.createShadowRoot();
             }
         }
@@ -41,19 +47,19 @@ var RblRepeater = (function (_HTMLElement) {
     }, {
         key: 'render',
         value: function render() {
-            var content = RblRepeater.fromJson(this.getAttribute('content'));
+            var _this2 = this;
+
             var element = this.getAttribute('element');
-            var template = this.innerHTML;
             var html = element !== null ? "<" + element.toLowerCase() + ">" : "";
-            if (Array.isArray(content)) {
-                content.forEach(function (item) {
-                    html += RblRepeater.interpolate(template, item);
+            if (Array.isArray(this.content)) {
+                this.content.forEach(function (item) {
+                    html += RblRepeater.interpolate(_this2.template, item);
                 });
             } else {
                 throw new Error("Content should be an Array of objects.");
             }
             html += element !== null ? "</" + element.toLowerCase() + ">" : "";
-            if (this.getAttribute('shadow') != "false") {
+            if (this.getAttribute('shadow') == "true") {
                 this.shadowRoot.innerHTML = html;
                 this.innerHTML = "";
             } else {
@@ -61,10 +67,23 @@ var RblRepeater = (function (_HTMLElement) {
             }
         }
     }, {
+        key: 'setContent',
+        value: function setContent(content) {
+            this.content = content;
+            this.render();
+        }
+    }, {
+        key: 'setTemplate',
+        value: function setTemplate(template) {
+            this.template = template;
+            this.render();
+        }
+    }, {
         key: 'attributeChangedCallback',
         value: function attributeChangedCallback(name) {
             switch (name) {
                 case "content":
+                    this.content = RblRepeater.fromJson(this.getAttribute('content'));
                     this.render();
                     break;
             }
@@ -98,7 +117,7 @@ var RblRepeater = (function (_HTMLElement) {
         }
     }]);
 
-    return RblRepeater;
+    return RebelRepeater;
 })(HTMLElement);
 
-document.registerElement("rbl-repeater", RblRepeater);
+document.registerElement("rebel-repeater", RebelRepeater);
