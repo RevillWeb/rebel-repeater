@@ -20,6 +20,8 @@ You can simply include the either the ES5 version from `dist/` or the ES2015 ver
     </script>
 ```
 
+For convenience you can also install it via npm: `npm install rebel-repeater` 
+
 Polyfills
 =========
 

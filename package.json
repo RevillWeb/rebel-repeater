@@ -1,6 +1,6 @@
 {
   "name": "rebel-repeater",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A web component inspired by ngRepeat from the AngularJS framework.",
   "repository": "https://github.com/RevillWeb/rebel-repeater.git",
   "main": "src/rebel-repeater.js",
