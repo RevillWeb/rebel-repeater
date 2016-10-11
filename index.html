@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Rebel Repeater Demo</title>
-    <script src="compiled/rebel-repeater.js"></script>
+    <script src="https://unpkg.com/skatejs-web-components/dist/index-with-deps.min.js"></script>
+    <script src="dist/rebel-repeater.js"></script>
 </head>
 <body>
     <ul>
-        <rebel-repeater shadow="true" content='[{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]'>
+        <rebel-repeater id="people" shadow="true">
             <li>${firstName} ${lastName}</li>
         </rebel-repeater>
     </ul>
+    <script>
+        document.querySelector("#people").setContent([{"firstName": "Bilbo", "lastName": "Baggins"}, {"firstName": "Frodo", "lastName": "Baggins"}, {"firstName": "Samwise", "lastName": "Gamgee"}]);
+    </script>
 </body>
 </html>

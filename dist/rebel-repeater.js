@@ -1,12 +1,8 @@
-'use strict';
+"use strict";
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -21,31 +17,31 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * Twitter: @RevillWeb
  */
 
-var RebelRepeater = exports.RebelRepeater = (function (_HTMLElement) {
+var RebelRepeater = function (_HTMLElement) {
     _inherits(RebelRepeater, _HTMLElement);
 
-    function RebelRepeater() {
+    function RebelRepeater(self) {
+        var _this, _ret;
+
         _classCallCheck(this, RebelRepeater);
 
-        return _possibleConstructorReturn(this, Object.getPrototypeOf(RebelRepeater).apply(this, arguments));
+        self = (_this = _possibleConstructorReturn(this, (RebelRepeater.__proto__ || Object.getPrototypeOf(RebelRepeater)).call(this, self)), _this);
+        self.content = [];
+        self.template = self.innerHTML;
+        return _ret = self, _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(RebelRepeater, [{
-        key: 'createdCallback',
-        value: function createdCallback() {
-            this.content = [];
-            this.template = this.innerHTML;
-            if (this.getAttribute('shadow') == "true") {
-                this.createShadowRoot();
+        key: "connectedCallback",
+        value: function connectedCallback() {
+            this._shadow = this.getAttribute('shadow') == "true";
+            if (this._shadow) {
+                this.attachShadow({ "mode": "open" });
             }
-        }
-    }, {
-        key: 'attachedCallback',
-        value: function attachedCallback() {
             this.render();
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             var _this2 = this;
 
@@ -59,7 +55,7 @@ var RebelRepeater = exports.RebelRepeater = (function (_HTMLElement) {
                 throw new Error("Content should be an Array of objects.");
             }
             html += element !== null ? "</" + element.toLowerCase() + ">" : "";
-            if (this.getAttribute('shadow') == "true") {
+            if (this._shadow) {
                 this.shadowRoot.innerHTML = html;
                 this.innerHTML = "";
             } else {
@@ -67,31 +63,21 @@ var RebelRepeater = exports.RebelRepeater = (function (_HTMLElement) {
             }
         }
     }, {
-        key: 'setContent',
+        key: "setContent",
         value: function setContent(content) {
             this.content = content;
             this.render();
         }
     }, {
-        key: 'setTemplate',
+        key: "setTemplate",
         value: function setTemplate(template) {
             this.template = template;
             this.render();
         }
-    }, {
-        key: 'attributeChangedCallback',
-        value: function attributeChangedCallback(name) {
-            switch (name) {
-                case "content":
-                    this.content = RebelRepeater.fromJson(this.getAttribute('content'));
-                    this.render();
-                    break;
-            }
-        }
     }], [{
-        key: 'interpolate',
+        key: "interpolate",
         value: function interpolate(template, obj) {
-            if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) == "object") {
+            if ((typeof obj === "undefined" ? "undefined" : _typeof(obj)) == "object") {
                 for (var key in obj) {
                     var find = "${" + key + "}";
                     if (template.indexOf(find) > -1) {
@@ -103,12 +89,13 @@ var RebelRepeater = exports.RebelRepeater = (function (_HTMLElement) {
             return template;
         }
     }, {
-        key: 'fromJson',
+        key: "fromJson",
         value: function fromJson(str) {
             var obj = null;
             if (typeof str == "string") {
                 try {
                     obj = JSON.parse(str);
+                    console.log(obj);
                 } catch (e) {
                     throw new Error("Invalid JSON string provided. ");
                 }
@@ -118,6 +105,6 @@ var RebelRepeater = exports.RebelRepeater = (function (_HTMLElement) {
     }]);
 
     return RebelRepeater;
-})(HTMLElement);
+}(HTMLElement);
 
-document.registerElement("rebel-repeater", RebelRepeater);
+window.customElements.define("rebel-repeater", RebelRepeater);

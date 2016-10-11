@@ -5,15 +5,18 @@
  * Twitter: @RevillWeb
  */
 
-export class RebelRepeater extends HTMLElement {
-    createdCallback() {
-        this.content = [];
-        this.template = this.innerHTML;
-        if (this.getAttribute('shadow') == "true") {
-            this.createShadowRoot();
-        }
+class RebelRepeater extends HTMLElement {
+    constructor(self) {
+        self = super(self);
+        self.content = [];
+        self.template = self.innerHTML;
+        return self;
     }
-    attachedCallback() {
+    connectedCallback() {
+        this._shadow = (this.getAttribute('shadow') == "true");
+        if (this._shadow) {
+            this.attachShadow({"mode": "open"});
+        }
         this.render();
     }
     render() {
@@ -27,7 +30,7 @@ export class RebelRepeater extends HTMLElement {
             throw new Error("Content should be an Array of objects.");
         }
         html += (element !== null ) ? "</" + element.toLowerCase() + ">" : "";
-        if (this.getAttribute('shadow') == "true") {
+        if (this._shadow) {
             this.shadowRoot.innerHTML = html;
             this.innerHTML = "";
         } else {
@@ -41,14 +44,6 @@ export class RebelRepeater extends HTMLElement {
     setTemplate(template) {
         this.template = template;
         this.render();
-    }
-    attributeChangedCallback(name) {
-        switch (name) {
-            case "content":
-                this.content = RebelRepeater.fromJson(this.getAttribute('content'));
-                this.render();
-                break;
-        }
     }
     static interpolate(template, obj) {
         if (typeof obj == "object") {
@@ -67,6 +62,7 @@ export class RebelRepeater extends HTMLElement {
         if (typeof str == "string") {
             try {
                 obj = JSON.parse(str);
+                console.log(obj);
             } catch (e) {
                 throw new Error("Invalid JSON string provided. ");
             }
@@ -75,4 +71,4 @@ export class RebelRepeater extends HTMLElement {
     }
 }
 
-document.registerElement("rebel-repeater", RebelRepeater);
+window.customElements.define("rebel-repeater", RebelRepeater);
